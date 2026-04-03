@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +10,11 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #f0f4ff;
+      --bg: #334B96;
       --fg: #0a0f2c;
       --accent: #1a5cff;
       --accent2: #0038cc;
-      --muted: #3d4566;
+      --muted: #8892b0;
       --card-bg: #ffffff;
     }
 
@@ -212,7 +213,7 @@
       font-size: 0.7rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: #0038cc;
       margin-bottom: 16px;
       display: flex;
       align-items: center;
@@ -224,7 +225,7 @@
       display: block;
       width: 32px;
       height: 1px;
-      background: var(--accent);
+      background: #0038cc;
     }
 
     /* About */
@@ -313,13 +314,14 @@
       font-family: 'DM Serif Display', serif;
       font-size: clamp(36px, 4vw, 60px);
       line-height: 1;
+      color: #0a0f2c;
     }
 
-    .projects-header h2 em { font-style: italic; color: var(--accent2); }
+    .projects-header h2 em { font-style: italic; color: #0038cc; }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 2px;
     }
 
@@ -467,24 +469,34 @@
       color: var(--muted);
     }
 
-    /* Reveal animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    /* Section animations — pure CSS, no JS needed */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
+    #interests, #working-on {
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .projects-header { animation: fadeUp 0.7s ease 0.1s both; }
+
+    .project-card {
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .projects-grid .project-card:nth-child(1) { animation-delay: 0.15s; }
+    .projects-grid .project-card:nth-child(2) { animation-delay: 0.25s; }
+    .projects-grid .project-card:nth-child(3) { animation-delay: 0.35s; }
+
     /* Responsive */
+    @media (max-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 768px) {
       nav, .hero, section, footer { padding-left: 24px; padding-right: 24px; }
-      .about { grid-template-columns: 1fr; }
-      .about-visual { display: none; }
       .projects-grid { grid-template-columns: 1fr; }
-      .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
       .hero-bottom { flex-direction: column; align-items: flex-start; gap: 32px; }
       nav { padding: 20px 24px; }
       .nav-links { gap: 20px; }
@@ -544,7 +556,7 @@
 
   <!-- What I am interested in -->
   <section id="interests">
-    <div class="projects-header reveal">
+    <div class="projects-header">
       <div>
         <div class="section-label">Curiosities</div>
         <h2>What I'm<br><em>interested in.</em></h2>
@@ -552,7 +564,7 @@
     </div>
     <div class="projects-grid">
 
-      <div class="project-card reveal">
+      <div class="project-card">
         <div class="project-num">01</div>
         <h3>Interest Title One</h3>
         <p>
@@ -561,7 +573,7 @@
         </p>
       </div>
 
-      <div class="project-card reveal">
+      <div class="project-card">
         <div class="project-num">02</div>
         <h3>Interest Title Two</h3>
         <p>
@@ -570,7 +582,7 @@
         </p>
       </div>
 
-      <div class="project-card reveal">
+      <div class="project-card">
         <div class="project-num">03</div>
         <h3>Interest Title Three</h3>
         <p>
@@ -579,12 +591,21 @@
         </p>
       </div>
 
+      <div class="project-card">
+        <div class="project-num">04</div>
+        <h3>Interest Title Four</h3>
+        <p>
+          A fourth interest — maybe something unexpected or niche.
+          The things that make you unique are often the ones worth sharing.
+        </p>
+      </div>
+
     </div>
   </section>
 
   <!-- What I am working on -->
   <section id="working-on" style="background: #e8eeff;">
-    <div class="projects-header reveal">
+    <div class="projects-header">
       <div>
         <div class="section-label">Current work</div>
         <h2>What I'm<br><em>working on.</em></h2>
@@ -592,7 +613,7 @@
     </div>
     <div class="projects-grid">
 
-      <div class="project-card reveal">
+      <div class="project-card">
         <div class="project-num">01</div>
         <h3>Project Name One</h3>
         <p>
@@ -602,7 +623,7 @@
         <a href="#" class="project-link">Learn more</a>
       </div>
 
-      <div class="project-card reveal">
+      <div class="project-card">
         <div class="project-num">02</div>
         <h3>Project Name Two</h3>
         <p>
@@ -612,12 +633,22 @@
         <a href="#" class="project-link">Learn more</a>
       </div>
 
-      <div class="project-card reveal">
+      <div class="project-card">
         <div class="project-num">03</div>
         <h3>Project Name Three</h3>
         <p>
           A third thing on your plate. Even early-stage or exploratory work
           counts — it shows how your mind moves.
+        </p>
+        <a href="#" class="project-link">Learn more</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">04</div>
+        <h3>Project Name Four</h3>
+        <p>
+          A fourth project or thing you're exploring. Could be a skill you're
+          developing, a book you're writing, or an idea you're testing.
         </p>
         <a href="#" class="project-link">Learn more</a>
       </div>
@@ -655,7 +686,7 @@
     <span>Made with curiosity ✦</span>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // Custom cursor
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
@@ -666,6 +697,7 @@
       el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
     });
+  </script>
 
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
