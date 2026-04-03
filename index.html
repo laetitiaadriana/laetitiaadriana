@@ -1,40 +1,658 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name</title>
+  <title>Laetitiaadriana — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    body { font-family: sans-serif; max-width: 700px; margin: 60px auto; padding: 0 20px; color: #222; }
-    h1 { font-size: 2rem; }
-    h2 { margin-top: 2rem; border-bottom: 1px solid #eee; padding-bottom: 6px; }
-    a { color: #0070f3; }
-    .project { margin-bottom: 1.2rem; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0e0e0e;
+      --fg: #f0ece3;
+      --accent: #e8c547;
+      --accent2: #c94f3a;
+      --muted: #666;
+      --card-bg: #181818;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      width: 12px; height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
+    }
+    .cursor.hovering {
+      width: 40px; height: 40px;
+      background: transparent;
+      border: 2px solid var(--accent);
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 48px;
+      mix-blend-mode: difference;
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      color: var(--fg);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      left: -20px;
+      transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(180px, 22vw, 320px);
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(240,236,227,0.06);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      animation: drift 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(-50%) translateX(0); }
+      to { transform: translateY(-52%) translateX(-40px); }
+    }
+
+    .hero-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.3s;
+    }
+
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(52px, 8vw, 120px);
+      line-height: 0.95;
+      max-width: 900px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.5s;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 48px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.8s;
+    }
+
+    .hero-desc {
+      max-width: 380px;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(240,236,227,0.65);
+    }
+
+    .hero-scroll {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Marquee */
+    .marquee-wrap {
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+      overflow: hidden;
+      padding: 14px 0;
+      background: var(--accent);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      animation: marquee 18s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee-track span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: var(--bg);
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* Sections */
+    section { padding: 120px 48px; }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    /* About */
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+    .about-text h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 4vw, 56px);
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
+    .about-text h2 em { font-style: italic; color: var(--accent); }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(240,236,227,0.65);
+      margin-bottom: 16px;
+    }
+
+    .about-visual {
+      position: relative;
+      height: 400px;
+    }
+
+    .about-box {
+      position: absolute;
+      border: 1px solid #333;
+      border-radius: 4px;
+    }
+
+    .about-box.main {
+      top: 0; left: 0; right: 40px; bottom: 40px;
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-box.accent-box {
+      bottom: 0; right: 0;
+      width: 120px; height: 120px;
+      background: var(--accent);
+    }
+
+    .about-monogram {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 80px;
+      color: #333;
+      letter-spacing: -2px;
+    }
+
+    /* Skills tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .tag {
+      padding: 6px 16px;
+      border: 1px solid #333;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      color: rgba(240,236,227,0.6);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Projects */
+    #projects { background: #0a0a0a; }
+
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 64px;
+    }
+
+    .projects-header h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 4vw, 60px);
+      line-height: 1;
+    }
+
+    .projects-header h2 em { font-style: italic; color: var(--accent2); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+      cursor: none;
+    }
+
+    .project-card:hover { background: #1e1e1e; }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover::after { transform: scaleX(1); }
+
+    .project-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: #2a2a2a;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .project-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(240,236,227,0.55);
+      margin-bottom: 24px;
+    }
+
+    .project-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .project-link::after {
+      content: '→';
+      transition: transform 0.2s;
+    }
+
+    .project-link:hover::after { transform: translateX(4px); }
+
+    /* Project card featured */
+    .project-card.featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 64px;
+    }
+
+    .project-card.featured .project-num { font-size: 6rem; }
+
+    /* Contact */
+    #contact {
+      text-align: center;
+      background: var(--fg);
+      color: var(--bg);
+      padding: 120px 48px;
+    }
+
+    #contact .section-label { justify-content: center; color: var(--bg); opacity: 0.5; }
+    #contact .section-label::before { background: var(--bg); }
+
+    #contact h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(40px, 6vw, 90px);
+      line-height: 1;
+      margin-bottom: 32px;
+    }
+
+    #contact h2 em { font-style: italic; color: var(--accent2); }
+
+    #contact p {
+      font-size: 1rem;
+      max-width: 480px;
+      margin: 0 auto 48px;
+      opacity: 0.6;
+      line-height: 1.7;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 18px 48px;
+      background: var(--bg);
+      color: var(--fg);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .cta-btn:hover { background: var(--accent); color: var(--bg); }
+
+    /* Footer */
+    footer {
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #1a1a1a;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav, .hero, section, footer { padding-left: 24px; padding-right: 24px; }
+      .about { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 32px; }
+      nav { padding: 20px 24px; }
+      .nav-links { gap: 20px; }
+    }
   </style>
 </head>
 <body>
 
-  <h1>Your Name</h1>
-  <p>A short bio about yourself. What you do, what you're interested in.</p>
+  <div class="cursor" id="cursor"></div>
 
-  <h2>Projects</h2>
+  <!-- Nav -->
+  <nav>
+    <a href="#" class="nav-logo">LA</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-  <div class="project">
-    <strong><a href="#">Project One</a></strong>
-    <p>Short description of what this project does and what you learned.</p>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg-text">CREATE</div>
+    <div class="hero-tag">Portfolio — 2025</div>
+    <h1 class="hero-title">
+      Making things<br>that <em>matter.</em>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        Hi, I'm Laetitia. I build projects I care about and share what I learn along the way.
+        This is my little corner of the internet.
+      </p>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        Scroll
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Projects</span><span>✦</span>
+      <span>Knowledge</span><span>✦</span>
+      <span>Ideas</span><span>✦</span>
+      <span>Curiosity</span><span>✦</span>
+      <span>Learning</span><span>✦</span>
+      <span>Creating</span><span>✦</span>
+      <span>Projects</span><span>✦</span>
+      <span>Knowledge</span><span>✦</span>
+      <span>Ideas</span><span>✦</span>
+      <span>Curiosity</span><span>✦</span>
+      <span>Learning</span><span>✦</span>
+      <span>Creating</span><span>✦</span>
+    </div>
   </div>
 
-  <div class="project">
-    <strong><a href="#">Project Two</a></strong>
-    <p>Short description of what this project does and what you learned.</p>
-  </div>
+  <!-- About -->
+  <section id="about">
+    <div class="about reveal">
+      <div class="about-text">
+        <div class="section-label">About me</div>
+        <h2>Curious by nature,<br><em>driven by craft.</em></h2>
+        <p>
+          I'm someone who loves diving deep into new topics, building things from scratch,
+          and figuring out how everything connects. Whether it's a personal project or
+          a new skill — I like to understand it fully.
+        </p>
+        <p>
+          <!-- Add more about yourself here! What's your background, your passion, your story? -->
+          Replace this with your own words. What makes you you?
+        </p>
+        <div class="tags">
+          <!-- Add your own skills/interests here -->
+          <span class="tag">Design</span>
+          <span class="tag">Research</span>
+          <span class="tag">Writing</span>
+          <span class="tag">Technology</span>
+          <span class="tag">Problem solving</span>
+          <span class="tag">Your skill here</span>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-box main">
+          <div class="about-monogram">LA</div>
+        </div>
+        <div class="about-box accent-box"></div>
+      </div>
+    </div>
+  </section>
 
-  <h2>Knowledge & Writing</h2>
-  <p>Anything you want to share — notes, articles, things you've figured out.</p>
+  <!-- Projects -->
+  <section id="projects">
+    <div class="projects-header reveal">
+      <div>
+        <div class="section-label">Work</div>
+        <h2>Selected<br><em>projects.</em></h2>
+      </div>
+    </div>
 
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
-  <p>GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a></p>
+    <div class="projects-grid">
+
+      <!-- Featured project -->
+      <div class="project-card featured reveal">
+        <div>
+          <div class="project-num">01</div>
+          <h3>Your Biggest Project</h3>
+        </div>
+        <div>
+          <p>
+            Describe your project here. What did you build? What problem does it solve?
+            What did you learn from it? Make it personal and specific — that's what makes
+            a portfolio memorable.
+          </p>
+          <a href="#" class="project-link">View project</a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card reveal">
+        <div class="project-num">02</div>
+        <h3>Second Project</h3>
+        <p>
+          A short description of this project. What tools or skills were involved?
+          What made it interesting or challenging?
+        </p>
+        <a href="#" class="project-link">View project</a>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card reveal">
+        <div class="project-num">03</div>
+        <h3>Third Project</h3>
+        <p>
+          Another project. Don't worry about having many — even 2-3 well-described
+          projects are more powerful than 10 vague ones.
+        </p>
+        <a href="#" class="project-link">View project</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-label">Get in touch</div>
+    <h2>Let's<br><em>connect.</em></h2>
+    <p>
+      Have a question, a project idea, or just want to say hi?
+      I'd love to hear from you.
+    </p>
+    <a href="mailto:your@email.com" class="cta-btn">Say hello →</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span>© 2025 Laetitiaadriana</span>
+    <span>Made with curiosity ✦</span>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, .project-card, .tag').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
