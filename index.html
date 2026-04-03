@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +9,12 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #0e0e0e;
-      --fg: #f0ece3;
-      --accent: #e8c547;
-      --accent2: #c94f3a;
-      --muted: #666;
-      --card-bg: #181818;
+      --bg: #f0f4ff;
+      --fg: #0a0f2c;
+      --accent: #1a5cff;
+      --accent2: #0038cc;
+      --muted: #8892b0;
+      --card-bg: #ffffff;
     }
 
     html { scroll-behavior: smooth; }
@@ -60,8 +59,8 @@
 
     .nav-logo {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.1em;
+      font-size: 2.2rem;
+      letter-spacing: 0.08em;
       color: var(--fg);
       text-decoration: none;
     }
@@ -97,7 +96,7 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(180px, 22vw, 320px);
       color: transparent;
-      -webkit-text-stroke: 1px rgba(240,236,227,0.06);
+      -webkit-text-stroke: 1px rgba(10,15,44,0.06);
       white-space: nowrap;
       pointer-events: none;
       user-select: none;
@@ -146,7 +145,7 @@
       max-width: 380px;
       font-size: 1rem;
       line-height: 1.7;
-      color: rgba(240,236,227,0.65);
+      color: rgba(10,15,44,0.6);
     }
 
     .hero-scroll {
@@ -243,7 +242,7 @@
     .about-text p {
       font-size: 1rem;
       line-height: 1.8;
-      color: rgba(240,236,227,0.65);
+      color: rgba(10,15,44,0.6);
       margin-bottom: 16px;
     }
 
@@ -254,7 +253,7 @@
 
     .about-box {
       position: absolute;
-      border: 1px solid #333;
+      border: 1px solid #d0daf5;
       border-radius: 4px;
     }
 
@@ -264,6 +263,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 8px 40px rgba(26,92,255,0.08);
     }
 
     .about-box.accent-box {
@@ -275,7 +275,7 @@
     .about-monogram {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 80px;
-      color: #333;
+      color: #d0daf5;
       letter-spacing: -2px;
     }
 
@@ -289,18 +289,18 @@
 
     .tag {
       padding: 6px 16px;
-      border: 1px solid #333;
+      border: 1px solid #c0d0f0;
       border-radius: 100px;
       font-size: 0.78rem;
       letter-spacing: 0.05em;
-      color: rgba(240,236,227,0.6);
+      color: rgba(10,15,44,0.55);
       transition: border-color 0.2s, color 0.2s;
     }
 
     .tag:hover { border-color: var(--accent); color: var(--accent); }
 
     /* Projects */
-    #projects { background: #0a0a0a; }
+    #projects { background: #e8eeff; }
 
     .projects-header {
       display: flex;
@@ -330,9 +330,10 @@
       overflow: hidden;
       transition: background 0.3s;
       cursor: none;
+      border: 1px solid #e0e8ff;
     }
 
-    .project-card:hover { background: #1e1e1e; }
+    .project-card:hover { background: #f5f8ff; }
 
     .project-card::after {
       content: '';
@@ -350,7 +351,7 @@
     .project-num {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 3rem;
-      color: #2a2a2a;
+      color: #d0daf5;
       line-height: 1;
       margin-bottom: 24px;
     }
@@ -364,7 +365,7 @@
     .project-card p {
       font-size: 0.9rem;
       line-height: 1.7;
-      color: rgba(240,236,227,0.55);
+      color: rgba(10,15,44,0.55);
       margin-bottom: 24px;
     }
 
@@ -400,45 +401,60 @@
     /* Contact */
     #contact {
       text-align: center;
-      background: var(--fg);
-      color: var(--bg);
+      background: var(--accent);
+      color: #ffffff;
       padding: 120px 48px;
     }
 
-    #contact .section-label { justify-content: center; color: var(--bg); opacity: 0.5; }
-    #contact .section-label::before { background: var(--bg); }
+    #contact .section-label { justify-content: center; color: #ffffff; opacity: 0.7; }
+    #contact .section-label::before { background: #ffffff; }
 
     #contact h2 {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(40px, 6vw, 90px);
       line-height: 1;
       margin-bottom: 32px;
+      color: #ffffff;
     }
 
-    #contact h2 em { font-style: italic; color: var(--accent2); }
+    #contact h2 em { font-style: italic; color: #c8daff; }
 
     #contact p {
       font-size: 1rem;
       max-width: 480px;
       margin: 0 auto 48px;
-      opacity: 0.6;
+      opacity: 0.8;
       line-height: 1.7;
+      color: #ffffff;
     }
 
-    .cta-btn {
-      display: inline-block;
-      padding: 18px 48px;
-      background: var(--bg);
-      color: var(--fg);
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: rgba(255,255,255,0.15);
+      color: #ffffff;
       text-decoration: none;
       font-size: 0.8rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       border-radius: 100px;
-      transition: background 0.2s, color 0.2s;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: background 0.2s;
     }
 
-    .cta-btn:hover { background: var(--accent); color: var(--bg); }
+    .social-btn:hover { background: rgba(255,255,255,0.28); }
+
+    .social-btn svg { width: 18px; height: 18px; fill: currentColor; }
 
     /* Footer */
     footer {
@@ -446,7 +462,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid #d0daf5;
       font-size: 0.75rem;
       color: var(--muted);
     }
@@ -483,23 +499,23 @@
   <nav>
     <a href="#" class="nav-logo">LA</a>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+      <a href="#interests">Interests</a>
+      <a href="#working-on">Working On</a>
+      <a href="#contact">Connect</a>
     </div>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-bg-text">CREATE</div>
-    <div class="hero-tag">Portfolio — 2025</div>
+    <div class="hero-bg-text">LAETITIA</div>
+    <div class="hero-tag">Welcome to my corner of the internet</div>
     <h1 class="hero-title">
-      Making things<br>that <em>matter.</em>
+      Hi, I'm <em>Laetitia.</em>
     </h1>
     <div class="hero-bottom">
       <p class="hero-desc">
-        Hi, I'm Laetitia. I build projects I care about and share what I learn along the way.
-        This is my little corner of the internet.
+        I'm curious about the world — I explore ideas, build projects, and share what I learn.
+        This site is where I collect my interests, my work, and my thinking.
       </p>
       <div class="hero-scroll">
         <div class="scroll-line"></div>
@@ -511,14 +527,14 @@
   <!-- Marquee -->
   <div class="marquee-wrap">
     <div class="marquee-track">
+      <span>Interests</span><span>✦</span>
       <span>Projects</span><span>✦</span>
-      <span>Knowledge</span><span>✦</span>
       <span>Ideas</span><span>✦</span>
       <span>Curiosity</span><span>✦</span>
       <span>Learning</span><span>✦</span>
       <span>Creating</span><span>✦</span>
+      <span>Interests</span><span>✦</span>
       <span>Projects</span><span>✦</span>
-      <span>Knowledge</span><span>✦</span>
       <span>Ideas</span><span>✦</span>
       <span>Curiosity</span><span>✦</span>
       <span>Learning</span><span>✦</span>
@@ -526,87 +542,84 @@
     </div>
   </div>
 
-  <!-- About -->
-  <section id="about">
-    <div class="about reveal">
-      <div class="about-text">
-        <div class="section-label">About me</div>
-        <h2>Curious by nature,<br><em>driven by craft.</em></h2>
-        <p>
-          I'm someone who loves diving deep into new topics, building things from scratch,
-          and figuring out how everything connects. Whether it's a personal project or
-          a new skill — I like to understand it fully.
-        </p>
-        <p>
-          <!-- Add more about yourself here! What's your background, your passion, your story? -->
-          Replace this with your own words. What makes you you?
-        </p>
-        <div class="tags">
-          <!-- Add your own skills/interests here -->
-          <span class="tag">Design</span>
-          <span class="tag">Research</span>
-          <span class="tag">Writing</span>
-          <span class="tag">Technology</span>
-          <span class="tag">Problem solving</span>
-          <span class="tag">Your skill here</span>
-        </div>
+  <!-- What I am interested in -->
+  <section id="interests">
+    <div class="projects-header reveal">
+      <div>
+        <div class="section-label">Curiosities</div>
+        <h2>What I'm<br><em>interested in.</em></h2>
       </div>
-      <div class="about-visual">
-        <div class="about-box main">
-          <div class="about-monogram">LA</div>
-        </div>
-        <div class="about-box accent-box"></div>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-num">01</div>
+        <h3>Interest Title One</h3>
+        <p>
+          Describe what fascinates you here. What drew you to this topic?
+          Why does it matter to you? Write freely — this is your perspective.
+        </p>
       </div>
+
+      <div class="project-card reveal">
+        <div class="project-num">02</div>
+        <h3>Interest Title Two</h3>
+        <p>
+          Another area you're passionate about. It could be a field of study,
+          a hobby, a big question you keep coming back to — anything that lights you up.
+        </p>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-num">03</div>
+        <h3>Interest Title Three</h3>
+        <p>
+          A third topic or theme you explore. Don't overthink it — what would you
+          happily talk about for hours with a stranger at a dinner party?
+        </p>
+      </div>
+
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects">
+  <!-- What I am working on -->
+  <section id="working-on" style="background: #e8eeff;">
     <div class="projects-header reveal">
       <div>
-        <div class="section-label">Work</div>
-        <h2>Selected<br><em>projects.</em></h2>
+        <div class="section-label">Current work</div>
+        <h2>What I'm<br><em>working on.</em></h2>
       </div>
     </div>
-
     <div class="projects-grid">
 
-      <!-- Featured project -->
-      <div class="project-card featured reveal">
-        <div>
-          <div class="project-num">01</div>
-          <h3>Your Biggest Project</h3>
-        </div>
-        <div>
-          <p>
-            Describe your project here. What did you build? What problem does it solve?
-            What did you learn from it? Make it personal and specific — that's what makes
-            a portfolio memorable.
-          </p>
-          <a href="#" class="project-link">View project</a>
-        </div>
+      <div class="project-card reveal">
+        <div class="project-num">01</div>
+        <h3>Project Name One</h3>
+        <p>
+          What are you building or working on right now? Describe the project,
+          what stage it's at, and what you're trying to achieve.
+        </p>
+        <a href="#" class="project-link">Learn more</a>
       </div>
 
-      <!-- Project 2 -->
       <div class="project-card reveal">
         <div class="project-num">02</div>
-        <h3>Second Project</h3>
+        <h3>Project Name Two</h3>
         <p>
-          A short description of this project. What tools or skills were involved?
-          What made it interesting or challenging?
+          Another project — could be something you're writing, researching,
+          creating, or learning. Keep it honest and specific.
         </p>
-        <a href="#" class="project-link">View project</a>
+        <a href="#" class="project-link">Learn more</a>
       </div>
 
-      <!-- Project 3 -->
       <div class="project-card reveal">
         <div class="project-num">03</div>
-        <h3>Third Project</h3>
+        <h3>Project Name Three</h3>
         <p>
-          Another project. Don't worry about having many — even 2-3 well-described
-          projects are more powerful than 10 vague ones.
+          A third thing on your plate. Even early-stage or exploratory work
+          counts — it shows how your mind moves.
         </p>
-        <a href="#" class="project-link">View project</a>
+        <a href="#" class="project-link">Learn more</a>
       </div>
 
     </div>
@@ -618,9 +631,22 @@
     <h2>Let's<br><em>connect.</em></h2>
     <p>
       Have a question, a project idea, or just want to say hi?
-      I'd love to hear from you.
+      Find me on the internet or drop me an email.
     </p>
-    <a href="mailto:your@email.com" class="cta-btn">Say hello →</a>
+    <div class="social-links">
+      <a href="https://substack.com/@yourname" target="_blank" class="social-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        Substack
+      </a>
+      <a href="https://linkedin.com/in/yourname" target="_blank" class="social-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="/cdn-cgi/l/email-protection#047d6b7176446169656d682a676b69" class="social-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-.904.732-1.636 1.636-1.636h.749L12 10.5l9.615-6.679h.749A1.636 1.636 0 0124 5.457z"/></svg>
+        Email me
+      </a>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -629,7 +655,7 @@
     <span>Made with curiosity ✦</span>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Custom cursor
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
@@ -643,16 +669,4 @@
 
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
-
-</body>
-</html>
+      entries
